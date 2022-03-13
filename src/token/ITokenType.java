@@ -1,0 +1,4 @@
+package token;
+
+interface ITokenType {
+}
