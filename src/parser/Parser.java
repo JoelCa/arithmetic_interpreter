@@ -1,7 +1,7 @@
 package parser;
 
 import ast.DivideNode;
-import ast.IArithmeticNode;
+import ast.AbstractArithmeticNode;
 import ast.IntLiteralNode;
 import ast.MinusNode;
 import ast.PlusNode;
@@ -28,7 +28,7 @@ public class Parser {
 		}
 	}
 	
-	private IArithmeticNode factor() throws Exception {
+	private AbstractArithmeticNode factor() throws Exception {
 		ArithmeticToken token = currentToken;
 		if (token.isDigit()) {
 			eatInteger();
@@ -37,15 +37,15 @@ public class Parser {
 		}
 		else if (token.isLeftParen()) {
 			eatLeftParen();
-			IArithmeticNode node = expr();
+			AbstractArithmeticNode node = expr();
 			eatRightParen();
 			return node;
 		}
 		return null;
 	}
 	
-	private IArithmeticNode term() throws Exception {
-		IArithmeticNode node = factor();
+	private AbstractArithmeticNode term() throws Exception {
+		AbstractArithmeticNode node = factor();
 		
 		while (isMultOrDivToken(currentToken)) {
 			ArithmeticToken token = currentToken;
@@ -61,8 +61,8 @@ public class Parser {
 		return node;
 	}
 	
-	private IArithmeticNode expr() throws Exception {
-		IArithmeticNode node = term();
+	private AbstractArithmeticNode expr() throws Exception {
+		AbstractArithmeticNode node = term();
 		while (isPlusOrMinusToken(currentToken)) {
 			ArithmeticToken token = currentToken;
 			if (token.isPlus()) {
@@ -77,7 +77,7 @@ public class Parser {
 		return node;
 	}
 	
-	public IArithmeticNode parse(String text) throws Exception {
+	public AbstractArithmeticNode parse(String text) throws Exception {
 		lexer.setText(text);
 		currentToken = lexer.get_next_token();
 		return expr();

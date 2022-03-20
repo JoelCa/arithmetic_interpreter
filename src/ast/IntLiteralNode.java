@@ -1,9 +1,8 @@
 package ast;
 
-import evaluator.EvaluatorVisitor;
-import evaluator.IEvaluatorVisitor;
+import evaluator.IArithmeticEvaluatorVisitor;
 
-public class IntLiteralNode implements IArithmeticNode {
+public class IntLiteralNode extends AbstractArithmeticNode {
 	int myIntValue;
 
 	public IntLiteralNode(int intValue) {
@@ -15,12 +14,7 @@ public class IntLiteralNode implements IArithmeticNode {
 	}
 
 	@Override
-	public int accept(EvaluatorVisitor visitor) {
-		return visitor.visit(this);
-	}
-
-	@Override
-	public int accept(IEvaluatorVisitor visitor) {
+	public Integer accept(IArithmeticEvaluatorVisitor<Integer> visitor) {
 		return visitor.visit(this);
 	}
 }

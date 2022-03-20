@@ -1,21 +1,15 @@
 package ast;
 
-import evaluator.EvaluatorVisitor;
-import evaluator.IEvaluatorVisitor;
+import evaluator.IArithmeticEvaluatorVisitor;
 
 public class DivideNode extends BinaryNode {
 
-    public DivideNode(IArithmeticNode exp1, IArithmeticNode exp2) {
+    public DivideNode(AbstractArithmeticNode exp1, AbstractArithmeticNode exp2) {
         super(exp1, exp2);
     }
 
 	@Override
-	public int accept(IEvaluatorVisitor visitor) {
-		return visitor.visit(this);
-	}
-
-	@Override
-	public int accept(EvaluatorVisitor visitor) {
+	public Integer accept(IArithmeticEvaluatorVisitor<Integer> visitor) {
 		return visitor.visit(this);
 	}
 }

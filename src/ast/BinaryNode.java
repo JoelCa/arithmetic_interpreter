@@ -1,19 +1,19 @@
 package ast;
 
-public abstract class BinaryNode implements IArithmeticNode {
-    protected IArithmeticNode myExpLeft;
-    protected IArithmeticNode myExpRight;
+public abstract class BinaryNode extends AbstractArithmeticNode {
+    protected AbstractArithmeticNode myExpLeft;
+    protected AbstractArithmeticNode myExpRight;
 
-    public BinaryNode(IArithmeticNode exp1, IArithmeticNode exp2) {
+    public BinaryNode(AbstractArithmeticNode exp1, AbstractArithmeticNode exp2) {
         this.myExpLeft = exp1;
         this.myExpRight = exp2;
     }
     
-    public IArithmeticNode getLeft() {
+    public AbstractArithmeticNode getLeft() {
     	return myExpLeft;
     }
     
-    public IArithmeticNode getRight() {
+    public AbstractArithmeticNode getRight() {
     	return myExpRight;
     }
 }
